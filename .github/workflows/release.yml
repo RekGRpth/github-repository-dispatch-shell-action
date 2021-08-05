@@ -9,15 +9,11 @@ jobs:
     concurrency:
       cancel-in-progress: true
       group: ${{ github.ref }}
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
     runs-on: ubuntu-latest
     steps:
-      - run: env | sort
       - run: echo "${{ toJSON(github) }}"
-      - run: hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .
-      - run: hub api "repos/${{ github.repository }}/git/matching-refs/v1" | jq .
-      - run: hub api --method DELETE "repos/${{ github.repository }}/releases/$(hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .id)" | jq .
-      - run: hub api --method DELETE "repos/${{ github.repository }}/git/refs/v1" | jq .
-      - run: hub api "repos/${{ github.repository }}/releases" --field tag_name=v1 | jq .
-      - run: hub api --method PATCH "repos/${{ github.repository }}/releases/$(hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .id)" | jq .
+      - uses: rekgrpth/git-clone-action@v1
+      - env:
+          GITHUB_TOKEN: ${{ github.token }}
+          INPUTS_MESSAGE: ${{ github.event.head_commit.message }}
+        run: .github/workflows/release.sh
