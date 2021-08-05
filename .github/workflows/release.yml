@@ -9,16 +9,11 @@ jobs:
     concurrency:
       cancel-in-progress: true
       group: ${{ github.ref }}
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
     runs-on: ubuntu-latest
     steps:
       - run: env | sort
       - run: echo "${{ toJSON(github) }}"
-#      - uses: rekgrpth/git-clone-action@v1
-      - env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: hub release delete v1 || echo "$?"
-        shell: sh
-      - env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: hub release create --message "${{ github.event.head_commit.message }}" v1
-        shell: sh
+      - run: hub api --method DELETE "repos/${{ github.repository }}/releases/$(hub api "repos/${{ github.repository }}/releases/tag/v1" | jq .id)"
+      - run: hub api "repos/${{ github.repository }}/releases" --field tag_name=v1 | jq .
