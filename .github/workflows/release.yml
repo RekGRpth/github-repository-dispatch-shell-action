@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: rekgrpth/git-clone-action@v1
-      - run: hub release create v1
+      - run: hub release create --message ${{ github.event.head_commit.message }} v1
