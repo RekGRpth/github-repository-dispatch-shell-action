@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 jobs:
   release:
+    concurrency:
+      cancel-in-progress: true
+      group: ${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
       - run: env | sort
