@@ -8,4 +8,5 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - uses: rekgrpth/git-clone-action@v1
       - run: hub release create v1
