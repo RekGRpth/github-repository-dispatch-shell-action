@@ -17,10 +17,9 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: |
-        set -eux
-        export INPUTS_DATA='{"event_type": "${{ inputs.event-type }}", "client_payload": ${{ inputs.client-payload }}}'
-        export INPUTS_REPOSITORY="${{ inputs.repository }}"
-        export INPUTS_TOKEN="${{ inputs.token }}"
-        "${GITHUB_ACTION_PATH}/action.sh"
+    - env:
+        INPUTS_DATA: '{"event_type": "${{ inputs.event-type }}", "client_payload": ${{ inputs.client-payload }}}'
+        INPUTS_REPOSITORY: ${{ inputs.repository }}
+        INPUTS_TOKEN: ${{ inputs.token }}
+      run: "${GITHUB_ACTION_PATH}/action.sh"
       shell: sh
