@@ -14,9 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: env | sort
-      - run: echo "${{ toJSON(github) }}"
+      - run: echo "${{ toJSON(github) }}" | jq .
       - run: hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .
-      - run: hub api --method DELETE "repos/${{ github.repository }}/releases/$(hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .id)"
-      - run: hub api --method DELETE "repos/${{ github.repository }}/git/refs/v1"
+      - run: hub api "repos/${{ github.repository }}/git/matching-refs/v1" | jq .
+      - run: hub api --method DELETE "repos/${{ github.repository }}/releases/$(hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .id)" | jq .
+      - run: hub api --method DELETE "repos/${{ github.repository }}/git/refs/v1" | jq .
       - run: hub api "repos/${{ github.repository }}/releases" --field tag_name=v1 | jq .
-      - run: hub api --method PATCH "repos/${{ github.repository }}/releases/$(hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .id)"
+      - run: hub api --method PATCH "repos/${{ github.repository }}/releases/$(hub api "repos/${{ github.repository }}/releases/tags/v1" | jq .id)" | jq .
