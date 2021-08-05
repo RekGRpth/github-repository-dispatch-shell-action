@@ -1,28 +1,10 @@
 name: github repository dispatch action
 description: github repository dispatch action
 author: RekGRpth
-inputs:
-  client-payload:
-    description: github repository dispatch client payload
-    default: '{}'
-  event-type:
-    description: github repository dispatch event type
-    required: true
-  repository:
-    description: github repository dispatch repository
-    default: ${{ github.repository }}
-  token:
-    description: github repository dispatch token
-    required: true
 runs:
   using: composite
   steps:
     - run: echo "${{ toJSON(github) }}"
       shell: sh
-    - env:
-        GITHUB_TOKEN: ${{ inputs.token }}
-        INPUTS_CLIENT_PAYLOAD: ${{ inputs.client-payload }}
-        INPUTS_EVENT_TYPE: ${{ inputs.event-type }}
-        INPUTS_REPOSITORY: ${{ inputs.repository }}
-      run: "${GITHUB_ACTION_PATH}/action.sh"
+    - run: "${GITHUB_ACTION_PATH}/action.sh"
       shell: sh
