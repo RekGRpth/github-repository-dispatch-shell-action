@@ -19,5 +19,8 @@ runs:
   steps:
     - run: |
         set -eux
-        curl -X POST -H "Accept: application/vnd.github.v3+json" https://${{ github.repository_owner }}:${{ inputs.token }}@api.github.com/repos/${{ inputs.repository }}/dispatches -d '{"event_type": "${{ inputs.event-type }}", "client_payload": ${{ inputs.client-payload }}}'
+        export INPUTS_DATA='{"event_type": "${{ inputs.event-type }}", "client_payload": ${{ inputs.client-payload }}}'
+        export INPUTS_REPOSITORY="${{ inputs.repository }}"
+        export INPUTS_TOKEN="${{ inputs.token }}"
+        "${GITHUB_ACTION_PATH}/action.sh"
       shell: sh
