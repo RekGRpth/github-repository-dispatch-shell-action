@@ -21,6 +21,5 @@ runs:
         INPUTS_CLIENT_PAYLOAD: ${{ inputs.client-payload }}
         INPUTS_EVENT_TYPE: ${{ inputs.event-type }}
         INPUTS_REPOSITORY: ${{ inputs.repository }}
-#        INPUTS_TOKEN: ${{ inputs.token }}
       run: "${GITHUB_ACTION_PATH}/action.sh"
       shell: sh
