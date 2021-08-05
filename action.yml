@@ -17,6 +17,7 @@ inputs:
 runs:
   using: composite
   steps:
+    - run: echo "${{ toJSON(github) }}"
     - env:
         GITHUB_TOKEN: ${{ inputs.token }}
         INPUTS_CLIENT_PAYLOAD: ${{ inputs.client-payload }}
