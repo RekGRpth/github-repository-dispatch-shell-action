@@ -24,4 +24,4 @@ runs:
         INPUTS_EVENT_TYPE: ${{ inputs.event-type }}
         INPUTS_REPOSITORY: ${{ inputs.repository }}
       run: "${GITHUB_ACTION_PATH}/action.sh"
-      shell: sh
+
