@@ -1,13 +1,10 @@
 # github repository dispatch shell action
 
-![Repository License](https://img.shields.io/github/license/RekGRpth/github-repository-dispatch-shell-action)
-![Repository Release](https://img.shields.io/github/v/release/RekGRpth/github-repository-dispatch-shell-action)
-
-call github repository dispatch to definded repository
+## call github repository dispatch to definded repository
 
 ### usage
 
-```yaml
+```yml
 steps:
   - env:
       GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }} # repository dispatch public repo access token, required
