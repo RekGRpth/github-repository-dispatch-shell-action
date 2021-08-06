@@ -2,7 +2,7 @@ name: Release
 on:
   push:
     branches:
-      - ${{ github.event.branch }}
+      - v1
   workflow_dispatch:
 jobs:
   release:
