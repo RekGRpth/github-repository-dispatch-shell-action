@@ -5,7 +5,7 @@ on:
       - v1
   workflow_dispatch:
 jobs:
-  release:
+  push:
     concurrency:
       cancel-in-progress: true
       group: ${{ github.ref }}
