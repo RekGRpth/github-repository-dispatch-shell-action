@@ -9,12 +9,12 @@ call github repository dispatch to definded repository
 
 ```yaml
 steps:
-  - uses: rekgrpth/github-repository-dispatch-shell-action@v1
-    with:
-      client-payload: '{"repository": ${{ toJson(github.event.repository.name) }}}' # repository dispatch client payload, default: {}
-      event-type: latest # repository dispatch event type, required
-      repository: ${{ github.repository_owner }}/${{ matrix.repo }} # repository dispatch repository, default: current workflow repository
-      token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }} # repository dispatch public repo access token, required
+  - env:
+      GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }} # repository dispatch public repo access token, required
+      INPUTS_CLIENT_PAYLOAD: '{"repository":${{ toJson(github.event.repository.name) }}}' # repository dispatch client payload, required
+      INPUTS_EVENT_TYPE: latest # repository dispatch event type, required
+      INPUTS_REPOSITORY: ${{ github.repository_owner }}/${{ matrix.repo }} # repository dispatch repository, default: current workflow repository
+    uses: rekgrpth/github-repository-dispatch-shell-action@v1
 strategy:
   matrix:
     repo:
