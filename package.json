@@ -1,11 +1,11 @@
 {
     "private": true,
-    "name": "github-repository-dispatch-action",
+    "name": "github-repository-dispatch-shell-action",
     "version": "v1",
     "author": {
       "name": "RekGRpth",
       "email": "RekGRpth@gmail.com",
-      "url": "https://github.com/RekGRpth/github-repository-dispatch-action"
+      "url": "https://github.com/RekGRpth/github-repository-dispatch-shell-action"
     },
     "license": "MIT",
     "dependencies": {

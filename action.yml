@@ -1,5 +1,5 @@
-name: github repository dispatch action
-description: github repository dispatch action
+name: github repository dispatch shell action
+description: github repository dispatch shell action
 author: RekGRpth
 runs:
   using: composite

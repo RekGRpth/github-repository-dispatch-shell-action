@@ -1,15 +1,15 @@
-# github repository dispatch action
+# github repository dispatch shell action
 
-![Repository License](https://img.shields.io/github/license/RekGRpth/github-repository-dispatch-action)
-![Repository Release](https://img.shields.io/github/v/release/RekGRpth/github-repository-dispatch-action)
+![Repository License](https://img.shields.io/github/license/RekGRpth/github-repository-dispatch-shell-action)
+![Repository Release](https://img.shields.io/github/v/release/RekGRpth/github-repository-dispatch-shell-action)
 
-repository dispatch to definded repository
+call github repository dispatch to definded repository
 
 ### usage
 
 ```yaml
 steps:
-  - uses: rekgrpth/github-repository-dispatch-action@v1
+  - uses: rekgrpth/github-repository-dispatch-shell-action@v1
     with:
       client-payload: '{"repository": ${{ toJson(github.event.repository.name) }}}' # repository dispatch client payload, default: {}
       event-type: latest # repository dispatch event type, required
