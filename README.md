@@ -4,7 +4,7 @@
 
 ### usage
 
-#### inside source pero workflow
+#### inside source repo workflow
 
 ```yml
 steps:
@@ -22,7 +22,7 @@ strategy:
       - repo3
 ```
 
-#### inside target pero workflow
+#### inside target repo workflow
 
 ```yml
 on:
