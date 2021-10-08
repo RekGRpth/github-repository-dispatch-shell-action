@@ -4,6 +4,8 @@
 
 ### usage
 
+#### inside source pero workflow
+
 ```yml
 steps:
   - env:
@@ -18,4 +20,11 @@ strategy:
       - repo1
       - repo2
       - repo3
+```
+
+#### inside target pero workflow
+
+```yml
+on:
+  repository_dispatch:
 ```
